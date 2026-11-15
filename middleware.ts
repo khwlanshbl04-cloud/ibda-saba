@@ -9,6 +9,12 @@ const secret = () => {
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
+
+  // Local UI preview only: never bypass authentication in production.
+  if (process.env.NODE_ENV !== "production" && process.env.PREVIEW_MODE === "true") {
+    return NextResponse.next();
+  }
+
   if (path.startsWith("/api/") || path.startsWith("/_next/") || path === "/favicon.ico") return NextResponse.next();
   const token = request.cookies.get("ibda_session")?.value;
   const key = secret();
