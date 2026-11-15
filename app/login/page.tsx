@@ -1,22 +1,14 @@
+import LoginForm from "@/components/LoginForm";
+
 export default function LoginPage() {
   return (
-    <div className="login-shell">
-      <div className="login-card">
+    <main className="login-shell">
+      <section className="login-card" aria-labelledby="login-title">
         <div className="login-brand">إبداع سبأ</div>
-        <h2>تسجيل الدخول</h2>
-
-        <div className="field">
-          <label>اسم المستخدم</label>
-          <input type="text" placeholder="admin" />
-        </div>
-
-        <div className="field">
-          <label>كلمة المرور</label>
-          <input type="password" placeholder="••••••••" />
-        </div>
-
-        <button className="primary-btn full">دخول النظام</button>
-      </div>
-    </div>
+        <p className="login-subtitle">نظام الصرافة والمحاسبة المتكامل</p>
+        <h1 id="login-title">تسجيل الدخول</h1>
+        <LoginForm />
+      </section>
+    </main>
   );
 }

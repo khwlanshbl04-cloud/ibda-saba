@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ibda_saba
+      POSTGRES_USER: ibda
+      POSTGRES_PASSWORD: local-dev-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ibda-saba-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ibda -d ibda_saba"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  ibda-saba-db:
